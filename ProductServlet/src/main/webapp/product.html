@@ -1,0 +1,27 @@
+<html>
+	<head>
+	     <title>product details</title>
+	</head>
+	<body bgcolor="pink">
+		<h1></h1>
+		<form method="get" action="./ProductServlet">
+		  <label>PRODUCTID:</label>
+		  <input type="number" name="productId" required/>
+		  <br><br>
+		  
+		  <label>PRODUCTNAME:</label>
+		  <input type="text" name="productName" required/>
+		  <br><br>
+		  
+		  <label>PRODUCTPRICE:</label>	
+		  <input type="number" name="productPrice" required/>
+		  <br><br>
+		  
+		  <label>PRODUCTQUANTITY:</label>	
+		  <input type="number" name="productQuantity"min="2" max="15"required/>
+		  <br><br>
+		  
+		  <input type="submit" value="ProductInvoice"/>
+		</form>
+	</body>
+</html>

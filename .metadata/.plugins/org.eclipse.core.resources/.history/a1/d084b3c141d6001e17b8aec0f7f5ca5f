@@ -1,0 +1,22 @@
+function number(){
+	//read  the number in variable
+	const num=document.getElementById('numberinput').value
+	//check number is palindrome or not
+	let rev=""
+		for(let i=0;i<numngth;i++){
+			rev=num+rev
+		}
+		if(num===rev)
+		{
+			alert("palindrome")
+			}
+		
+		else
+		{
+			alert( "not a palindrome")
+		}
+		//set the output
+		document.getElementById('numberoutput').value=rev
+	
+	
+}

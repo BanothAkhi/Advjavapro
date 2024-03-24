@@ -1,0 +1,22 @@
+let dolphinScore1=96
+let dolphinScore2=108
+let dolphinScore3=89
+let koalasScore1=88
+let koalasScore2=91
+let koalasScore3=110
+let scoreDolphins
+let scoreKoalas
+scoreDolphins=(dolphinScore1+dolphinScore2+dolphinScore3)/3
+scoreKoalas=(koalasScore1+koalasScore2+koalasScore3)/3
+
+if(scoreDolphins>=100)
+{
+	console.log("Dolphins win the trophy")
+}
+else if(scoreKoalas>=100){
+		console.log("Koalas win the trophy")
+
+}
+
+
+

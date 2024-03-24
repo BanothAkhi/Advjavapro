@@ -1,0 +1,82 @@
+<html>
+<head>
+<title>Registration Form...</title>
+</head>
+<body bgcolor="pink" style="text-align:center">
+		<h1>REGISTRATION FORM</h1>
+			<br><br>
+			
+		 <form method="get" action="RegistrationServlet">
+		 <label>USERNAME:</label>
+		 <input type="text" name="username" required/>
+		 
+		 <br><br>
+		 
+		  <label>USERPASSWORD:</label>
+		 <input type="password" name="password" required/>
+		 
+		 <br><br>
+		 
+		  <label>MOBILE:</label>
+		 <input type="number" name="mobile" required/>
+		 
+		 <br><br>
+		 
+		 <label>EMAIL:</label>
+		 <input type="email" name="email" required/>
+		 
+		 <br><br>
+		 
+		 <label>GENDER:</label>
+		 <input type="radio" name="gender" value="MALE"/>MALE
+		 <input type="radio" name="gender" value="FEMALE"/>FEMALE
+		 
+		 <br><br>
+		 
+		 <label>DOB:</label>
+		 <input type="date" name="dob" required>
+		
+		 
+		 <br><br>
+		 
+		 <label>QUALIFICATION:</label>
+		 <input type="checkbox" name="qualification" value="BSC"/>BSC
+		 <input type="checkbox" name="qualification" value="BTech"/>BTech
+		 <input type="checkbox" name="qualification" value="MTech"/>MTech
+		 <input type="checkbox" name="qualification" value="Ph.d"/>Ph.d
+		 
+		 <br><br>
+		 
+		 <label>COUNTRY:</label>
+		 <select name="country" required>
+		 <option>select the country</option>
+		 <option>INDIA</option>
+		 <option>JAPAN</option>
+		 <option>RUSSIA</option>
+		 <option>USA</option>
+		 </select>
+
+		 <br><br>
+
+		 <label>LANGUAGE:</label>
+		 <select name="language" required multiple>
+		 <option>select the language</option>
+		 <option>TELUGU</option>
+		 <option>HINDI</option>
+		 <option>ENGLISH</option>
+		 <option>KANNADA</option>
+		 </select>
+
+		<br><br>
+
+		<label>Ratan sir comments:</label>
+		<textarea name="comments" rows="5" cols="25">
+		</textarea>
+	
+		<br><br>
+
+		 <input type="submit" value="Register"/>
+
+		 </form>
+</body>
+</html>

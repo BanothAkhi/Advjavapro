@@ -1,0 +1,99 @@
+package com.akhil.jdbc;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class ProductDao {
+
+		public int save(Product pro) {
+		//Declare the resources
+			Connection connection=null;
+			PreparedStatement preparedStatement=null;
+			int count=0;
+			try {
+				//Get the connection
+				connection=DbConnection.createconnection();
+				//create the preparedStatement object
+				preparedStatement=connection.prepareStatement("insert into pro values (?,?,?)");
+				//read the data from employee object and set to parameters
+				preparedStatement.setInt(1,pro.getProId());
+				preparedStatement.setString(2, pro.getProName());
+				preparedStatement.setDouble(3, pro.getProPrice());
+				count=preparedStatement.executeUpdate();
+			}
+			catch(SQLException e) {
+				e.printStackTrace();
+			}
+			finally {
+				//Before release the connection check the connection is present or not
+				try {
+					if(connection!=null)
+						connection.close();
+					if(preparedStatement!=null)
+						preparedStatement.close();
+				}
+				catch ( SQLException e ) {
+					e.printStackTrace();
+				}
+			}
+			return count;
+		}
+		
+		//getProductById
+		
+		
+		public Product getProductById(int ProId) {
+			Product product=null;
+			//try with resources once the try block completed the resource automatically closed
+			try(Connection connection=DbConnection.createconnection();
+					PreparedStatement preparedStatement=connection.prepareStatement("select * from pro where ProId=?")){
+				//set the parameter data
+				preparedStatement.setInt(1, ProId);
+				//execute the query
+				ResultSet resultSet=preparedStatement.executeQuery();
+				//if the record is present execute below code
+				if(resultSet.next()) {
+					product=new Product();
+					product.setProId(resultSet.getInt(1));
+					product.setProName(resultSet.getString(2));
+					product.setProPrice(resultSet.getDouble(3));
+
+				}
+			}
+				catch(SQLException e) {
+					e.printStackTrace();
+				}
+			return product;
+			}
+		
+		
+		//findAll
+		
+		public List<Product> getAllProducts(){
+			
+			List<Product> pros=new ArrayList<Product>();
+			try(Connection connection=DbConnection.createconnection();
+					Statement statement=connection.createStatement()){
+				ResultSet resultSet=statement.executeQuery("select * from pro");
+				while(resultSet.next()) {
+					Product product=new Product();
+					product.setProId(resultSet.getInt(1));
+					product.setProName(resultSet.getString(2));
+					product.setProPrice(resultSet.getDouble(3));
+				pros.add(product);
+			}
+			}
+			catch(SQLException e) {
+				e.printStackTrace();
+			}
+			return pros;
+		}
+
+		
+}

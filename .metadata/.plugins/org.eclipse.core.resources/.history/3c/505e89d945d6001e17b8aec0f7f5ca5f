@@ -1,0 +1,27 @@
+function number(){
+	//read  the number in variable
+	let num=document.getElementById('numberinput').value
+	//check number is palindrome or not
+	let temp=num
+	
+		let rev=0
+		while(num!=0){
+			let digit=temp%10
+			rev=rev*10+digit
+			temp=temp/10
+		}
+		
+		if(temp===rev)
+		{
+			alert(" a palindrome")
+			}
+		
+		else
+		{
+			alert("not a palindrome")
+		}
+		//set the output
+		document.getElementById('numberoutput').value=rev
+	
+	
+}

@@ -1,0 +1,51 @@
+package com.sathya.servlets;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+@WebServlet("/GenerateServlet")
+public class GenerateServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+   
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Step1:read the data
+		int first=Integer.parseInt(request.getParameter("first"));
+		int last=Integer.parseInt(request.getParameter("last"));
+		String operation=request.getParameter("operation");
+		//Step2:Process the data
+		ArrayList<Integer>al=new ArrayList<>();
+		switch(operation) {
+			case"even":for(int i=first;i<=last;i++) {
+						if(i%2==0) {
+							al.add(i);
+						}	
+			}
+				break;
+			case"odd":for(int i=first;i<=last;i++) {
+				if(i%2!=0) {
+					al.add(i);
+				}
+			}
+			//case"prime":result=num1*num2;
+			//case"perfect":result=num1/num2;
+			//case"strong":result=num1%num2;
+		//Step3:Render the responce
+		response.setContentType("text/html");
+		PrintWriter writer=response.getWriter();
+		writer.println("<html>");
+		writer.println("<h1>GENERATED NUMBERS</h1>");
+		writer.println("Even numbers:"+al);
+		writer.println("odd numbers:"+al);
+
+		writer.println("</html>");
+	}
+
+}

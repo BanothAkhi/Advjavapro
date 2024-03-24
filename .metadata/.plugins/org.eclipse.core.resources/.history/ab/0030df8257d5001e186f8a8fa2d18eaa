@@ -1,0 +1,17 @@
+function score(sc1,sc2,sc3){
+	avg=(sc1+sc2+sc3)/3
+	return avg
+}
+sd=score(89,100,90)
+sk=score(89,110,98)
+minavg=100
+if(sd>sk && sd>=minavg){
+	console.log("Dolphins win the trophy"+sd)
+}
+else if(sd<sk && sk>=minavg){
+		console.log("koalas win the trophy"+sk)
+}
+else{
+		console.log("both win the trophy")
+
+}

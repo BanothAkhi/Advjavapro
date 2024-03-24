@@ -1,0 +1,36 @@
+package com.akhil.jdbc;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class EmployeeDao {
+	public int save(Employee emp) throws SQLException 
+	{
+		//Declare the resources
+		Connection connection=null;
+		PreparedStatement preparedStatement=null;
+		int count=0;
+		try {
+			//Get the connection
+			preparedStatement=connection.prepareStatement("insert into emp values(?,?,?)");
+			
+			//Read the data from Emp object and set to parameters
+			preparedStatement.setInt(1, emp.getEmpId());
+			preparedStatement.setString(2, emp.getEmpName());
+			preparedStatement.setDouble(3, emp.getEmpSalary());
+			count=preparedStatement.executeUpdate();
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			//Before release connection check the connection is present or not
+			if(connection!=null)
+				connection.close();
+			if(preparedStatement!=null)
+				preparedStatement.close();
+		}
+		return count;
+	}
+}

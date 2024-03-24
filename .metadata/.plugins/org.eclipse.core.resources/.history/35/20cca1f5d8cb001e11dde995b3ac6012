@@ -1,0 +1,12 @@
+package com.akhil.jdbc;
+
+public class DataBaseClient {
+
+	public static void main(String[] args) {
+		 EmployeeDao employeeDao=new EmployeeDao();
+		 int r1=employeeDao.save(new Employee(1001,"akhil",1000));
+		 System.out.println("Data base connected successfully.."+r1);
+		 int r2=employeeDao.save(new Employee(1002,"akash",2000));
+		 System.out.println("Data base connected successfully.."+r2);
+	}
+}

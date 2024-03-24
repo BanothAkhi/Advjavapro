@@ -1,0 +1,51 @@
+package com.akhil.jdbc;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ProductDao {
+
+		public int save(Product pro) {
+		//Declare the resources
+			Connection connection=null;
+			PreparedStatement preparedStatement=null;
+			int count=0;
+			try {
+				//Get the connection
+				connection=DbConnection.createconnection();
+				//create the preparedStatement object
+				preparedStatement=connection.prepareStatement("insert into emp values (?,?,?)");
+				//read the data from employee object and set to parameters
+				preparedStatement.setInt(1,pro.getProId());
+				preparedStatement.setString(2, pro.getProName());
+				preparedStatement.setDouble(3, pro.getProPrice());
+				count=preparedStatement.executeUpdate();
+			}
+			catch(SQLException e) {
+				e.printStackTrace();
+			}
+			finally {
+				//Before release the connection check the connection is present or not
+				try {
+					if(connection!=null)
+						connection.close();
+					if(preparedStatement!=null)
+						preparedStatement.close();
+				}
+				catch ( SQLException e ) {
+					e.printStackTrace();
+				}
+			}
+			return count;
+		}
+		
+}

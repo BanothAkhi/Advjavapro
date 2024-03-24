@@ -1,0 +1,11 @@
+function test(sc1,sc2,sc3)
+{
+	avg=(sc1+sc2+sc3)/3
+	return avg
+}
+ sd=(96,108,89)
+ sk=(88,91,110)
+ minavg=100
+ if(sd>sk && avg>=minavg){
+	 console.log("dolphins win the trophy.."+avg)
+ }

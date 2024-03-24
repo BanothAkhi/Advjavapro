@@ -1,0 +1,50 @@
+package com.sathya.servlets;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/GenerateServlet")
+public class GenerateServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Step1:Read the data
+		int first1=Integer.parseInt(request.getParameter("first"));
+		int last1=Integer.parseInt(request.getParameter("last"));
+		String operation=request.getParameter("operation");
+		//Step2:Process the data
+		
+		ArrayList<Integer> l=new ArrayList<Integer>();
+		for(int i=first1;i<=last1;i++)
+			switch(operation) {
+			case"even": 
+				if(i%2==0) {
+					l.add(i);	
+				}
+			
+				break;
+			case"odd":
+				if(i%2!=0) {
+					l.add(i);
+				}
+				break;
+			}
+			//Step3:Render the data
+			response.setContentType("text/html");	
+			PrintWriter writer=response.getWriter();
+			writer.println("<html>");
+			writer.println("<h1>CALCULATED DATA</h1>");
+			writer.println("even number:"+l);
+			writer.println("<br><br>");
+			writer.println("odd number:"+l);
+			writer.println("</html>");
+	}
+
+}
