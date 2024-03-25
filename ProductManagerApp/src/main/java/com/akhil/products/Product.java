@@ -3,18 +3,17 @@ package com.akhil.products;
 import java.sql.Date;
 
 public class Product {
-	
+
 	private String proId;
 	private String proName;
-	private Double proPrice;
+	private double proPrice;
 	private String proBrand;
 	private String proMadeIn;
-	private Date proMnfgDate;
-	private Date proExpDate;
+	private Date proMfgDate;
+	private Date proExpdate;
 	private byte[] proImage;
 	private byte[] proAudio;
-	private byte[] provideo;
-	
+	private byte[] proVideo;
 	
 	public byte[] getProAudio() {
 		return proAudio;
@@ -22,11 +21,12 @@ public class Product {
 	public void setProAudio(byte[] proAudio) {
 		this.proAudio = proAudio;
 	}
-	public byte[] getProvideo() {
-		return provideo;
+	
+	public byte[] getProVideo() {
+		return proVideo;
 	}
-	public void setProvideo(byte[] provideo) {
-		this.provideo = provideo;
+	public void setProVideo(byte[] proVideo) {
+		this.proVideo = proVideo;
 	}
 	public String getProId() {
 		return proId;
@@ -40,10 +40,10 @@ public class Product {
 	public void setProName(String proName) {
 		this.proName = proName;
 	}
-	public Double getProPrice() {
+	public double getProPrice() {
 		return proPrice;
 	}
-	public void setProPrice(Double proPrice) {
+	public void setProPrice(double proPrice) {
 		this.proPrice = proPrice;
 	}
 	public String getProBrand() {
@@ -58,17 +58,18 @@ public class Product {
 	public void setProMadeIn(String proMadeIn) {
 		this.proMadeIn = proMadeIn;
 	}
-	public Date getProMnfgDate() {
-		return proMnfgDate;
+	public Date getProMfgDate() {
+		return proMfgDate;
 	}
-	public void setProMnfgDate(Date proMnfgDate) {
-		this.proMnfgDate = proMnfgDate;
+	public void setProMfgDate(Date proMfgDate) {
+		this.proMfgDate = proMfgDate;
 	}
-	public Date getProExpDate() {
-		return proExpDate;
+
+	public Date getProExpdate() {
+		return proExpdate;
 	}
-	public void setProExpDate(Date proExpDate) {
-		this.proExpDate = proExpDate;
+	public void setProExpdate(Date proExpdate) {
+		this.proExpdate = proExpdate;
 	}
 	public byte[] getProImage() {
 		return proImage;
@@ -76,5 +77,4 @@ public class Product {
 	public void setProImage(byte[] proImage) {
 		this.proImage = proImage;
 	}
-	
 }

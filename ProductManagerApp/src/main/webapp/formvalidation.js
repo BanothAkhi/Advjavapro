@@ -19,11 +19,11 @@
 		return false
 	}
 	//get the mfg and exp dates
-	var proMnfgDate=document.getElementById('proMnfgDate').value
-	var proExpDate=document.getElementById('proExpDate').value
+	var proMfgDate=document.getElementById('proMfgDate').value
+	var proExpdate=document.getElementById('proExpdate').value
 	//convert it into date format
-	var manfacturingDateobj=new Date(proMnfgDate)
-	var experingDateobj=new Date(proExpDate)
+	var manfacturingDateobj=new Date(proMfgDate)
+	var experingDateobj=new Date(proExpdate)
 	// check the validation of dates
 	if(manfacturingDateobj>experingDateobj){
 		alert("manufacturing date must not be greater than expiray date")

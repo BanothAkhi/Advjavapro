@@ -15,74 +15,71 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import org.apache.commons.io.IOUtils;
+
+
 @WebServlet("/AddProductServlet")
 @MultipartConfig
 public class AddProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		//Read the data
-		String proId=request.getParameter("proId");
-		String proName=request.getParameter("proName");
-		double proPrice=Double.parseDouble(request.getParameter("proPrice"));
-		
+	
+		String  proid=request.getParameter("proId");
+		String  proName=request.getParameter("proName");
+		Double proPrice=Double.parseDouble(request.getParameter("proPrice"));
 		String proBrand=request.getParameter("proBrand");
 		String proMadeIn=request.getParameter("proMadeIn");
-		
-		Date proMnfgDate=Date.valueOf(request.getParameter("proMnfgDate"));
-		Date proExpDate=Date.valueOf(request.getParameter("proExpDate"));
-		
-		Part part=request.getPart("proImage");
-		InputStream inputStream=part.getInputStream();
-		
-		//conversion of inputStream into byteArray
-		byte[] proImage=IOUtils.toByteArray(inputStream);
-		//using the above details create the product object
-		
-	//	Part p2=request.getPart("proAudio");
-	//	InputStream inp2=p2.getInputStream();
-		
-	//	byte[] proAudio=IOUtils.toByteArray(inp2);
-		
-	//	Part p3=request.getPart("proVideo");
-	//	InputStream inp3=p3.getInputStream();
-		
-	//	byte[] proVideo=IOUtils.toByteArray(inp3);
-		
-		
-		Product product=new Product();
-		
-		product.setProId(proId);
-		product.setProName(proName);
-		product.setProPrice(proPrice);
-		product.setProBrand(proBrand);
-		product.setProMadeIn(proMadeIn);
-		product.setProMnfgDate(proMnfgDate);
-		product.setProExpDate(proExpDate);
-		product.setProImage(proImage);
-	//	product.setProImage(proAudio);
-	//	product.setProImage(proVideo);
-		
-		//giving the product object into Dao layer
-		
-		ProductDao productDao=new ProductDao();
-		int result=productDao.save(product);
-		if(result==1){
-		//send request to jsp File to request object
-			request.setAttribute("saveResult", result);
+		 Date proMfgDate=Date.valueOf(request.getParameter("proMfgdate"));
+		 Date proExpdate=Date.valueOf(request.getParameter("proExpdate"));
+		 Part part=request.getPart("proImage");
+		 InputStream inputStream=part.getInputStream();
+		 
+		//conversion of inputStream into byte[]
+		 byte[] proImage=IOUtils.toByteArray(inputStream);
+		 
+		 Part part2=request.getPart("proAudio");
+		 InputStream inputStream2=part2.getInputStream();
+		 byte[] proAudio=IOUtils.toByteArray(inputStream2);
+		 
+		 Part part3=request.getPart("proVideo");
+		 InputStream inputStream3=part3.getInputStream();
+		 byte[] proVideo=IOUtils.toByteArray(inputStream3);
+		 
+		 Product product=new Product();
+		 
+		 product.setProId(proid);
+		 product.setProName(proName);
+		 product.setProPrice(proPrice);
+		 product.setProBrand(proBrand);
+		 product.setProMadeIn(proMadeIn);
+		 product.setProMfgDate(proMfgDate);
+		 product.setProExpdate(proExpdate);
+		 product.setProImage(proImage);
+		 product.setProAudio(proAudio);
+		 product.setProVideo(proVideo);
+		 
+	     ProductDao p=new ProductDao();
+	    
+		 int result=p.save(product);
+		 
 
-			RequestDispatcher dispatcher=request.getRequestDispatcher("productList.jsp");
-			dispatcher.forward(request, response);
-		}
-		else {
-			response.setContentType("text/html");
-			PrintWriter writer=response.getWriter();
-			writer.println("Data inserted successfully..."+result);
-			RequestDispatcher dispatcher=request.getRequestDispatcher("add-product.html");
-			dispatcher.include(request, response);
-			
-		}
+		 if(result==1)
+		 {
+			 request.setAttribute("saveResult", result);
+			 RequestDispatcher dispatcher=request.getRequestDispatcher("productList.jsp");
+			dispatcher.forward(request, response); 
+		 }
+		
+		 else
+		 {
+			 response.setContentType("text/html");
+			 PrintWriter writer=response.getWriter();
+		      writer.println("data inserted successfull"+result);
+		      RequestDispatcher dispatcher=request.getRequestDispatcher("add-product.html");
+		      dispatcher.include(request, response);
+		 }
+	
+		  
 	}
 
 }

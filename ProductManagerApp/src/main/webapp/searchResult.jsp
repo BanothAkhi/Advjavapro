@@ -5,52 +5,27 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Product List</title>
+<title>Search PRODUCT LIST</title>
 </head>
 <!-- BootStarp CDN Link to Get the Support of BootStrap -->
     <Link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script type="text/javascript" src="formvalidation.js"></script>
 <body>
-     <h1 class="text-center text-success">LIST OF PODUCTS</h1>
+    <%
+        String input= request.getParameter("ch");
+     %>
      
-        <div>
-    <c:if test="${saveResult==1}">
-        <h1 class="text-success text-center">DATA INSERTED SUCCESS FULLY...............</h1>
-    </c:if>
-    </div>
-     
-     <div>
-         <a class="btn btn-success" href="add-product.html">save Product</a>
-     
-     </div>
-         <div class="form-group">
-           
-           <form method="get" action="searchResult.jsp">
-            <input type="search" name="ch" placeholder="search here" aria-label="search"/>
-            <button type="submit">Search</button>
-           </form>
-          
-     </div>
-     
-    <div>
-    <c:if test="${deleteResult==1}">
-        <h1 class="text-danger text-center">DELETION  SUCCESSFULL...............</h1>
-    </c:if>
-    </div>
-        <div>
-    <c:if test="${deleteResult==0}">
-        <h1 class="text-danger text-center">DELETION FAILED...............</h1>
-    </c:if>
-    </div>
-     
-     <div>
-    <c:if test="${result==1}">
-        <h1 class="text-success text-center">DATA updated SUCCESS FULLY...............</h1>
-    </c:if>
-    </div>
-     
-    
+     <h2 style="color:red; text-align: center">results are---------</h2>
 
-  
+     
+     <div class ="form-group">
+     
+      <a   href ="productList.jsp" class="btn btn-success">LIST OF PRODUCTS</a>
+      
+     </div>
+     
+     
+       
    <table class="table table-bordered table-striped">
    <thead class="thead-dark">
       <tr>
@@ -68,7 +43,7 @@
         </tr>
    </thead>
 <tbody>
-<c:forEach var="product" items="<%=new ProductDao().findAll()%>">
+<c:forEach var="product" items="<%=new ProductDao().SearchByInput(input)%>">
      <tr>
      <td>${product.proId}</td>
      <td>${product.proName}</td>
@@ -92,10 +67,7 @@
         <source src="data:Video/mp4;base64,${Base64.getEncoder().encodeToString(product.proVideo)}" type="video/mp4">
         </video>
          </td>
-       <td>
-       <a class="btn btn-primary" href="./DeleteServlet?proId=${product.proId }">Delete</a>
-       <a class="btn btn-primary" href="./EditProductServlet?proId=${product.proId}">Edit</a>
-       </td>
+     
        </tr>
 </c:forEach>
 
